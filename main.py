@@ -1,5 +1,3 @@
-print("inca e vag")
-print("mai e unul")
-print("incep sa inteleg...")
-for i in range(4)
-    print(i)
+print("avem un cod")
+print("are multe linii")
+
