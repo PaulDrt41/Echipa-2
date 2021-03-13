@@ -1,4 +1,5 @@
-print("incaa e vag")
+print("inca e vag")
+print("mai e unul")
 print("incep sa inteleg...")
 for i in range(4)
     print(i)
