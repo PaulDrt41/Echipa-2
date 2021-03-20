@@ -7,4 +7,4 @@ def attack():
         else:
             bhp = 1/3*bhp
             eng-=15
-
+print("cc")
