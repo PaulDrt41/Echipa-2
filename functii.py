@@ -1,4 +1,8 @@
+
+
 def attack():
+    global OHKO, eng, bhp
+
     rasp1 =int(input("You choose to attack, what will you use? \n-------- \n Made in Heaven (or grateful dead) (1)          Tusk Act 4 (2)"))
     if rasp == 1:
         if bhp > 100:
@@ -15,6 +19,7 @@ def attack():
         bhp -= OHKO*coef
         eng = 0
 def heal():
+    global eng, php, OHKO
     if php >= 75:
         print("you are determined to continue attacking")
         #aici nu isi da heal, ci trebuie sa aleaga alta actiune
@@ -30,6 +35,7 @@ def heal():
             php += 30
             eng-=20
 def recharge():
+    global eng, php
     if eng >= 75:
         print("You seriously need to reevaluate your life choices")
     else:
@@ -41,3 +47,5 @@ def recharge():
             print("why not replace youself with another one of yourself from an alternate world that isn't exactly an alternate world, and you tehnicaly don't replace yourself, but another self-conscious variant of yourself takes your abilities that he actually never had, but knows how to use in order to achieve the goal he always knew you had, despite him coming from a timeline in which few details are different including said goal. Once you switch, you replace the you from the other world, who becomes the main you, and if in critical condition you may die in his former world, thereby losing the battle held there just because of your selfish desire of achieving the victory that is not actually guaranteed, but tehnicaly speaking, considering that there is an infinite number of yous, is guaranteed, but not for you, but for you,which is quite literaly contradicted by the nature of your abillity. Anyway, now you are in condition to fight and you know what? your hp got maxed out as well. Though right now you are bamboozled, which means that your energy is depleted, but you gained your energy back just because that is what your ability does")
             eng = 100
             php = 100
+
+   
