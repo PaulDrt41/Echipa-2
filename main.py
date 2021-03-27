@@ -1,18 +1,15 @@
-import random
+from os import system
+from time import sleep
+from keyboard import wait
 
-#ma doare capul de la functii aaaaaah
-#nici nu stiu dacai corect ce e aici sau nu
-
-#da run fara erori dar valorile nu se schimba <- de rezolvat daca mergem pe functii cu parametrii in declaratie ex. def function(foo, bar):
-#asta ar trebui sa mearga 100000% daca sar schimba valorile dupa apelul functiei
-
-eng = 100
-OHKO = 100
-bhp = 100
 php = 100
+bhp = 100
+OHKO = 100
+eng = 100
 
-def attack(eng, bhp, OHKO):
-    rasp =int(input("You choose to attack, what will you use? \nMade in Heaven (or grateful dead) (1)           Tusk Act 4 (2) \n: "))
+def attack():
+	global bhp, eng, OHKO  
+    rasp1 =int(input("You choose to attack, what will you use? \n-------- \n Made in Heaven (or grateful dead) (1)          Tusk Act 4 (2)"))
     if rasp == 1:
         if bhp > 100:
             print ("it was all meant to be \n you opponent aged so much, he lost half of his health points")
@@ -27,13 +24,14 @@ def attack(eng, bhp, OHKO):
         coef = random.random()
         bhp -= OHKO*coef
         eng = 0
-
-def heal(php, eng, OHKO):
+		
+def heal():
+	global php, eng, OHKO 
     if php >= 75:
         print("you are determined to continue attacking")
         #aici nu isi da heal, ci trebuie sa aleaga alta actiune
     else:
-        rasp2 = int(input("It seems your health bar is pretty low, what will you do? \n Crazy Diamond (1)           Zombie Horse String (2)\n: "))
+        rasp2 = int(input("It seems your health bar is pretty low, what will you do? \n Crazy Diamond (1)           Zombie Horse String (2)\n"))
         if rasp2 == 1:
             print(" Dora the Explora\n you recovered all your health points but your hand looks kind of funny now")
             php = 100
@@ -43,12 +41,13 @@ def heal(php, eng, OHKO):
             print("forgot what the panel said\n magicaly, the wounds you sew dissapeared")
             php += 30
             eng-=20
-
-def recharge(eng, php):
+			
+def recharge():
+	global eng, php 
     if eng >= 75:
         print("You seriously need to reevaluate your life choices")
     else:
-        rasp3 = int(input("You could use some rest\n Water (1)          D4C(2)\n: "))
+        rasp3 = int(input("You could use some rest\n Water (1)          D4C(2)\n"))
         if rasp3 == 1:
             print("your inner plankton thanks you")
             eng+= 50
@@ -57,18 +56,61 @@ def recharge(eng, php):
             eng = 100
             php = 100
 
-while bhp:
+while bhp and php:
+    system('cls')
+	print(f"you are currently {100-php} points away from dying - you have {php} hp left")
     if eng == 0:
-        print("You are left with nothing but to rest. You fought well, now take yout time before going back in...")
-        recharge(eng, php)
-    action = int(input("You see yourself facing the boss. What will you choose to do? \n1. Take a step forward, and Attack \n2. Make some distance and Heal \n3. Reevaluate your life decisions and Recharge \n: "))
-    if action > 3 or action < 1:
-        print("You dont have the power. Try again: ")
-    elif action == 1:
-        attack(eng, bhp, OHKO)
-    elif action == 2:
-        heal(php, eng, OHKO)
-    elif action == 3:
-        recharge(eng, php)
+        print("You dont feel your legs anymore (HaHa). You are left with nothing but to recharge. that and quitting")
+        recharge()
+    if bhp > 75:
+        action = int(input("you see yourself facing the boss. What will you do\n 1. take a step forward and attack\n2. Keep your distance and heal\n3. Take a quick sip and recharge")
+        if action > 3 or action < 1:
+            print("That's not how it works. Try again: ")
+        elif action == 1:
+            attack(bhp, php, eng, OHKO)
+        elif action == 2:
+            heal(php,eng,OHKO)
+        elif action == 3:
+            recharge(eng,php)
+        sleep(2)
+        print("<<Thou may think thy power is enough to vanquish any foe thou encounter>>")
+        sleep(1)
+        print("<<soon thou will realise thy mistake>>")
+        php-=13
+    elif bhp > 25 and bhp < 75:
+        action = int(input("You have angered the boss, and now he deals more damage.\n1. take a step forward an attack\n2. Keep your distance and heal\n. Take a quick sip and recharge")
+        if action > 3 or action < 1:
+            print("That's not how it works. Try again: ")
+        elif action == 1:
+            attack(bhp, php, eng, OHKO)
+        elif action == 2:
+            heal(php,eng,OHKO)
+        elif action == 3:
+            recharge(eng,php)
+        sleep(2)
+        print("<<Long have I waited for such a formidable foe>>")
+        sleep(1)
+        print("<<fear not as your death will be remembered>>")
+        if bhp <68 and bhp > 67:
+            print ("Oh, the POWER!")
+            sleep(1)
+            print("THE WORLD")
+            sleep(1)
+            print("OVER HEAVEN!\n the ability to overwrite reality is now mine") 
+            php = 0
+            eng = 0
+            bhp = 100
+        php-=20
+    elif bhp <25:
+        print("It's do or die\n if you were lucky enough, you might have skipped this stage, but the boss' true powers finnaly awakened")
+        if random.choice(1,0) == 1:
+            php == 0
+        else:
+            bhp == 0
+	print("press X to continue...")
+	wait('x')
 
-print("WOOO!!! You beat the BOSS finished on the 2nd place. Dont ask why and how you finished on the 2nd place. I dont have enough time to explain that")
+if bhp == 0:
+    print("WOOO!!! You beat the BOSS, but still finished on the 2nd place. Dont ask why and how")
+elif php == 0:
+    print("you may win if you try again")
